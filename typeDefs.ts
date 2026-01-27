@@ -9,7 +9,9 @@ export const typeDefs = gql`
     }
     type Query { 
         hello: String,
-        getListArticle:[Article]
+        getListArticle:[Article],
+        getArticle(id:ID):Article 
     }
+    
 `
 //type Query định nghĩa ra câu truy vấn có những gì
