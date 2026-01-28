@@ -1,11 +1,13 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import * as database from "./config/database";
-import Article from "./models/article_model";
+
 import { ApolloServer, gql } from "apollo-server-express";
-import { Query } from "mongoose";
-import { typeDefs } from "./typeDefs";
+
+
 import { resolvers } from "./resolvers";
+
+import { typeDefs } from "./typeDefs/index_typeDefs";
 
 const startServer = async () => {
 
@@ -17,7 +19,7 @@ const startServer = async () => {
     //GraphQL
 
     const apolloServer = new ApolloServer({
-        typeDefs,
+        typeDefs:typeDefs,
         resolvers,
     });
 
