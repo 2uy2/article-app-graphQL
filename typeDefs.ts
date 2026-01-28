@@ -21,7 +21,9 @@ export const typeDefs = gql`
     }
     type Mutation {
         # ArticleInput là kiểu dữ liệu đầu vào,Article là kiểu dữ liệu khi gọi ra
-        createArticle(article:ArticleInput):Article 
+        createArticle(article:ArticleInput):Article ,
+        deleteArticle(id:ID):String,
+        updateArticle(id:ID,article:ArticleInput):Article
     }
     
 `
