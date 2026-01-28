@@ -10,7 +10,7 @@ export const typeDefsArticle = gql`
     }
     # Query để lấy ra dữ liệu
     type Query { 
-        getListArticle:[Article],
+        getListArticle(sortKey:String,sortValue:String):[Article],
         getArticle(id:ID):Article ,   
     }
     # input để xác định trường dữ liệu tham số đầu vào
