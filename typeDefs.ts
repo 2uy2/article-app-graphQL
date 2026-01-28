@@ -7,11 +7,19 @@ export const typeDefs = gql`
         avatar:String,
         description:String
     }
+    type Category {
+        id:ID,
+        title:String,
+        avatar:String,
+        
+    }
     # Query để lấy ra dữ liệu
     type Query { 
-        hello: String,
         getListArticle:[Article],
-        getArticle(id:ID):Article 
+        getArticle(id:ID):Article ,
+        getListCategory:[Category],
+        getCategory(id:ID):Category ,
+        
     }
     # Mulation chữa những câu lệnh thêm sửa xoá
     input ArticleInput {
@@ -19,11 +27,19 @@ export const typeDefs = gql`
         avatar:String,
         description:String
     }
+    input CategoryInput {
+        title:String,
+        avatar:String,
+        
+    }
     type Mutation {
         # ArticleInput là kiểu dữ liệu đầu vào,Article là kiểu dữ liệu khi gọi ra
         createArticle(article:ArticleInput):Article ,
         deleteArticle(id:ID):String,
-        updateArticle(id:ID,article:ArticleInput):Article
+        updateArticle(id:ID,article:ArticleInput):Article,
+        createCategory(category:CategoryInput):Category ,
+        deleteCategory(id:ID):String,
+        updateCategory(id:ID,category:CategoryInput):Category,
     }
     
 `
