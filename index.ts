@@ -1,13 +1,11 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express} from "express";
 import dotenv from "dotenv";
 import * as database from "./config/database";
 
-import { ApolloServer, gql } from "apollo-server-express";
-
-
-import { resolvers } from "./resolvers";
+import { ApolloServer } from "apollo-server-express";
 
 import { typeDefs } from "./typeDefs/index_typeDefs";
+import { resolvers } from "./resolvers/index_resolver";
 
 const startServer = async () => {
 
