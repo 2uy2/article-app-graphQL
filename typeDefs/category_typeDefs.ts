@@ -18,7 +18,7 @@ export const typeDefsCategory = gql`
     }
     # Mulation chữa những câu lệnh thêm sửa xoá
     type Mutation {
-        # ArticleInput là kiểu dữ liệu đầu vào,Article là kiểu dữ liệu khi gọi ra
+        # CategoryInput là kiểu dữ liệu đầu vào,Category là kiểu dữ liệu khi gọi ra
         createCategory(category:CategoryInput):Category ,
         deleteCategory(id:ID):String,
         updateCategory(id:ID,category:CategoryInput):Category,

@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import { title } from "node:process";
-import { getEnabledCategories } from "node:trace_events";
 
 const categorySchema = new mongoose.Schema(
     {
