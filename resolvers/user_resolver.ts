@@ -3,11 +3,37 @@ import User from "../models/user_model";
 import { generateRandomString } from "../helpers/generate";
 
 
+
 //resolvers chọc vào database để lấy data nhưng tuân thủ thẻ Query 
 export const resolversUser = {
+    Query:{
+        getUser:async(_,args)=>{
+            const {id}= args
+            const infoUser = await User.findOne({
+                _id:id
+            });
+            if(infoUser){
+                return {
+                    code:200,
+                    message:"thành công",
+                    id:infoUser.id,
+                    fullName:infoUser.fullName,
+                    email:infoUser.email,
+                    token:infoUser.token
+                }
+            }
+            else {
+                return {
+                    code:400,
+                    message:"thất bại"
+                }
+            }
+
+        }
+    },
     Mutation: {
         registerUser: async (_, args) => {
-     
+          
             const { user } = args;
             const emailExist = await User.findOne({
                 email: user.email,
@@ -35,6 +61,7 @@ export const resolversUser = {
             }
         },
         loginUser:async(_,args)=>{
+       
             const {email,password} = args.user;
             const infoUser  = await User.findOne({
                 email:email,
@@ -60,7 +87,8 @@ export const resolversUser = {
                 email:infoUser.email,
                 token:infoUser.token
             }
-        }
+        },
+
     }
 
 }

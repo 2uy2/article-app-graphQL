@@ -12,7 +12,7 @@ export const typeDefsUser = gql`
     }
     # Query để lấy ra dữ liệu
     type Query {
-        _empty: String
+        getUser(id:ID):User
     }
     # input để xác định trường dữ liệu tham số đầu vào
     input RegisterUserInput {
