@@ -6,6 +6,7 @@ import { ApolloServer } from "apollo-server-express";
 
 import { typeDefs } from "./typeDefs/index_typeDefs";
 import { resolvers } from "./resolvers/index_resolver";
+import { requireAuth } from "./middleware/auth_middleware";
 
 const startServer = async () => {
 
@@ -15,10 +16,13 @@ const startServer = async () => {
     const app: Express = express();
     const port: number | string = process.env.PORT;
     //GraphQL
-
+    app.use("/graphql",requireAuth);
     const apolloServer = new ApolloServer({
         typeDefs:typeDefs,
         resolvers,
+        context:({req})=>{
+            return {...req};
+        }
     });
 
     await apolloServer.start();

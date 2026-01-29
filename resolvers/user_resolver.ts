@@ -7,10 +7,11 @@ import { generateRandomString } from "../helpers/generate";
 //resolvers chọc vào database để lấy data nhưng tuân thủ thẻ Query 
 export const resolversUser = {
     Query:{
-        getUser:async(_,args)=>{
-            const {id}= args
+        getUser:async(_,args,context)=>{
+            console.log(context["user"]);
+            // const {id}= args
             const infoUser = await User.findOne({
-                _id:id
+                token:context["user"].token
             });
             if(infoUser){
                 return {
