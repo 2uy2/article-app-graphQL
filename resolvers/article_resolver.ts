@@ -7,9 +7,10 @@ export const resolversArticle = {
     Query: {
 
         getListArticle: async (_,args) => {
-            const {sortKey,sortValue,currentPage,limitItems,filterKey,filterValue} = args;
-
-          
+            const {sortKey,sortValue,currentPage,limitItems,filterKey,filterValue,keyWord} = args;
+              const find ={
+                deleted:false
+            }
             // sort
             const sort = {};
             if (sortKey&&sortValue){
@@ -20,13 +21,17 @@ export const resolversArticle = {
             const skip = (currentPage-1)*limitItems;
             //end pagination
             // filter
-              const find ={
-                deleted:false
-            }
+            
             if(filterKey&&filterValue){
                 find[filterKey]=filterValue   
             }
             // end filter
+            // search
+            if(keyWord){
+                const keywordRegex = new RegExp(keyWord,"i");
+                find["title"]=keywordRegex
+            }
+            // end search
             const article = await Article.find((find)
                 
             ).sort(sort).limit(limitItems).skip(skip);
