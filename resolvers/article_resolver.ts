@@ -7,16 +7,19 @@ export const resolversArticle = {
     Query: {
 
         getListArticle: async (_,args) => {
-            const {sortKey,sortValue} = args;
+            const {sortKey,sortValue,currentPage,limitItems} = args;
             // sort
             const sort = {};
             if (sortKey&&sortValue){
                 sort[sortKey]=sortValue
             }
             //end sort
+            // pagination
+            const skip = (currentPage-1)*limitItems;
+            //end pagination
             const article = await Article.find({
                 deleted: false
-            }).sort(sort);
+            }).sort(sort).limit(limitItems).skip(skip);
             return article
         },
         getArticle: async (_, args) => { //args là tham số có dạng dữ liệu là object(là tham số thứ 2)
