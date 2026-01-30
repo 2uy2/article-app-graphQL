@@ -16,7 +16,15 @@ const startServer = async () => {
     const app: Express = express();
     const port: number | string = process.env.PORT;
     //GraphQL
-    app.use(cors());
+     app.use(
+        cors({
+            origin: [
+                "https://studio.apollographql.com",
+                "http://localhost:3000",
+            ],
+            credentials: true,
+        })
+    );
 
     app.use("/graphql",requireAuth);
     const apolloServer = new ApolloServer({

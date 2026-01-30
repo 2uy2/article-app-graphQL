@@ -59,7 +59,13 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, express_1.default)();
     const port = process.env.PORT;
     //GraphQL
-    app.use((0, cors_1.default)());
+    app.use((0, cors_1.default)({
+        origin: [
+            "https://studio.apollographql.com",
+            "http://localhost:3000",
+        ],
+        credentials: true,
+    }));
     app.use("/graphql", auth_middleware_1.requireAuth);
     const apolloServer = new apollo_server_express_1.ApolloServer({
         typeDefs: index_typeDefs_1.typeDefs,
