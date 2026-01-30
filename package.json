@@ -5,11 +5,11 @@
   "scripts": {
     "start": "nodemon --exec tsx index.ts",
     "build": "tsc",
-    "ts.check":"tsc --project tsconfig.json",
-    "add-build":"git add dist",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "pre-commit":[
+  "pre-commit": [
     "ts.check",
     "build",
     "add-build"
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "apollo-server-express": "^3.13.0",
+    "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^4.22.1",
     "graphql": "^16.12.0",

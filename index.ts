@@ -16,6 +16,8 @@ const startServer = async () => {
     const app: Express = express();
     const port: number | string = process.env.PORT;
     //GraphQL
+    app.use(cors());
+
     app.use("/graphql",requireAuth);
     const apolloServer = new ApolloServer({
         typeDefs:typeDefs,
@@ -38,4 +40,8 @@ const startServer = async () => {
     });
 }
 startServer();
+
+function cors(): any {
+    throw new Error("Function not implemented.");
+}
 
