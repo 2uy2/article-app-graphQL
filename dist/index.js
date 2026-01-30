@@ -48,6 +48,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const database = __importStar(require("./config/database"));
+const cors_1 = __importDefault(require("cors"));
 const apollo_server_express_1 = require("apollo-server-express");
 const index_typeDefs_1 = require("./typeDefs/index_typeDefs");
 const index_resolver_1 = require("./resolvers/index_resolver");
@@ -58,7 +59,7 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, express_1.default)();
     const port = process.env.PORT;
     //GraphQL
-    app.use(cors());
+    app.use((0, cors_1.default)());
     app.use("/graphql", auth_middleware_1.requireAuth);
     const apolloServer = new apollo_server_express_1.ApolloServer({
         typeDefs: index_typeDefs_1.typeDefs,
@@ -78,6 +79,3 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 startServer();
-function cors() {
-    throw new Error("Function not implemented.");
-}

@@ -1,7 +1,7 @@
 import express, { Express} from "express";
 import dotenv from "dotenv";
 import * as database from "./config/database";
-
+import cors from "cors";
 import { ApolloServer } from "apollo-server-express";
 
 import { typeDefs } from "./typeDefs/index_typeDefs";
@@ -40,8 +40,4 @@ const startServer = async () => {
     });
 }
 startServer();
-
-function cors(): any {
-    throw new Error("Function not implemented.");
-}
 
